@@ -1,46 +1,41 @@
-import React,{useState,useEffect} from 'react';
-import Layout from '../layout/layout.jsx';
-import Noticia from '../components/Noticia.jsx';
+import React,{useState,useEffect} from 'react'
+import Layout from '../layout/layout.jsx'
+import Noticia from '../components/Noticia.jsx'
+import Titular from '../components/Titular.jsx'
 
 var dataNoticia = [
         {
                 headline: 'andate a la mierda',
-                text: 'en esta oportunidad voy a decirte algo importante, puto el que lee',
                 tags: ['general', 'nacionales'],
                 mainTag: 'nacionales',
                 views: 600
         },
         {
                 headline: 'michael jackson revive y postulará a la presidencia de bolivia',
-                text: 'noticia de ultimo minuto vizcarra c murio ',
                 tags: ['general', 'nacionales'],
                 mainTag: 'internacionales',
                 views: 88
         },
         {
                 headline: 'vizacarra legaliza el matrimonio gey para casarse con antauro humala',
-                text: 'noticia de ultimo minuto vizcarra c murio ',
                 tags: ['general', 'nacionales'],
                 mainTag: 'nacionales',
                 views: 450
         },
         {
                 headline: 'keiko fujimori se convierte en la primera persidente mujer de Chololandia',
-                text: 'noticia de ultimo minuto vizcarra c murio ',
                 tags: ['general', 'nacionales'],
                 mainTag: 'nacionales',
                 views: 600
         },
         {
                 headline: 'jefferson farfan entro al congreso por podemos peru',
-                text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
                 tags: ['general', 'nacionales'],
                 mainTag: 'nacionales',
                 views: 8900
         },
         {
                 headline: 'katy perry se caso con ariana grande',
-                text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
                 tags: ['general', 'internacionales'],
                 mainTag: 'internacionales',
                 views: 4500
@@ -48,45 +43,44 @@ var dataNoticia = [
 ];
 
 
-const obtainData = async () =>{
-        return dataNoticia;
+let headlineP =
+{
+        headline: 'me tire un pedo jugoso',
+        text: 'manche al pobre del costado, no se por que había alguien a mi costado'
+};
+
+const obtainHeadline = async()=>{
+        return headlineP;
 }
 
-const processNews = async (props) => {
-        let dataNews = await obtainData();
-        let returnData = []
-        if (props.type === 'home') {
-                dataNews.map((item,index)=>{
-                        returnData.push(item);   
-                })
-                return returnData;
-        }
-        else if(props.type === 'nacionales'){
-                dataNews.map((item,index)=>{
-                        if(item.mainTag === 'nacionales'){
-                              returnData.push(item);  
-                        }
-                })
-        }
-        else if(props.type === 'internacionales'){
-                dataNews.map((item)=>{
-                        if(item.mainTag === 'internacionales'){
-                                returnData.push(item);
-                        }
-                })
-        }
-        return returnData;
+const obtainData = () =>{
+        return dataNoticia;
 }
 
 function Home(props) {
 
         const [arrayComponents ,setArrayComponentsState] = useState([]);
-
+        const [titular,setTitularState] = useState({});
+        
         useEffect(async ()=>{
-                let newsList = async () => {
+                
+                let processTitular = async() => {
+                        var headlinep;
+                        try{
+                                headlinep = await obtainHeadline();
+                        }catch(err){
+                                console.log(err);
+                        }
+                        if (headlinep !== undefined || headlinep !== null) {
+                                setTitularState(headlinep); 
+                        } 
+                }
+
+                let newsList = async () =>
+                 {
                         var dataNews = [];
                         var dataReturn = [];
-                        dataNews = await processNews(props);
+                        dataNews = await obtainData();
                         dataReturn = dataNews.map((item, index) => {
                                 return <Noticia key={index} dataNews={item} />
                         });
@@ -96,12 +90,18 @@ function Home(props) {
                 let News = await newsList(); 
                 console.log(News);
                 setArrayComponentsState(News);
+                processTitular();
+                
+
         },[props])
-        
+
         return (
                 <div>
-                        <Layout>
-                                <div className = "container-noticias">
+                        <Layout>        
+                                <div className="headline">
+                                        <Titular dataTitular={titular}/>
+                                </div>
+                                <div className="container-noticias">
                                         {arrayComponents}
                                 </div>
                         </Layout>
@@ -110,7 +110,4 @@ function Home(props) {
 }
 
 export default Home;
-
-
-
 

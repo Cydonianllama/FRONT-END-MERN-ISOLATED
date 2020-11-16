@@ -1,23 +1,17 @@
 import React,{useState} from 'react';
-
-const handleSeeMoreClick = e => {
-    console.log('estoy funcionando bien');
-    e.preventDefault();
-}
-
-const p = (props) => {
-    console.log(props);
-}
+import {Link} from 'react-router-dom'
 
 function Noticia(props){
+
     return(
         <div className="noticia-normal">
-            <div className="img-noticia">
-                IMGEN
-            </div>
+            <Link to="/exactpath">
+                <div className="img-noticia-normal" >
+                    IMGEN
+                </div>
+            </Link>
             <div className="container-noticia">
                 <p>{props.dataNews.headline}</p>
-                <p>{props.dataNews.text}</p>
             </div>
         </div>
     )
