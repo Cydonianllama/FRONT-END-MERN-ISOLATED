@@ -104,6 +104,16 @@ function Home(props) {
                                 <div className="container-noticias">
                                         {arrayComponents}
                                 </div>
+                                <div className="container-deportes">
+                                        <h2>DEPORTES</h2>
+                                        
+                                </div>
+                                <div className="container-espectaculos">
+                                        <h2>ESPECTACULOS</h2>
+                                </div>
+                                <div className= "container-variados">
+                                        <h2>VARIADOS</h2>
+                                </div>
                         </Layout>
                 </div>
         )

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../layout/layout.jsx';
 import Noticia from '../components/Noticia.jsx';
-
+import {useHistory} from 'react-router-dom';
 var dataNoticia = [
     {
         headline: 'andate a la mierda',
@@ -37,6 +37,55 @@ var dataNoticia = [
         tags: ['general', 'nacionales'],
         mainTag: 'nacionales',
         views: 8900
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
+    },
+    {
+        headline: 'katy perry se caso con ariana grande',
+        text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
+        tags: ['general', 'internacionales'],
+        mainTag: 'internacionales',
+        views: 4500
     },
     {
         headline: 'katy perry se caso con ariana grande',
