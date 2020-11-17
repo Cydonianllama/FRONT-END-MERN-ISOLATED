@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../layout/layout.jsx';
 import Noticia from '../components/Noticia.jsx';
-import {useHistory} from 'react-router-dom';
+
 var dataNoticia = [
     {
         headline: 'andate a la mierda',
