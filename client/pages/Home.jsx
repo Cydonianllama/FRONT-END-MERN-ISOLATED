@@ -53,7 +53,8 @@ const obtainHeadline = async()=>{
         return headlineP;
 }
 
-const obtainData = () =>{
+const obtainData = async () =>{
+        
         return dataNoticia;
 }
 

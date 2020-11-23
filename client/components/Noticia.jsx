@@ -26,12 +26,9 @@ function Noticia(props){
         <div className="noticia-normal">
             <Link to={`/home/${props.dataNews.mainTag}/${url}`}>
                 <div className="img-noticia-normal" >
-                    IMGEN
+                     <p className = "titulo-noticia" >{props.dataNews.headline}</p>
                 </div>
-            </Link>
-            <div className="container-noticia">
-                <p>{props.dataNews.headline}</p>
-            </div>
+            </Link> 
         </div>
     )
 }
