@@ -12,9 +12,12 @@ function Noticia(props){
     const [url,setURLState] = useState('');
 
     useEffect(()=>{
+
+        console.log('hola soy noticia : ' , props.dataNews)
+
         const transformToURL = async() =>{
             let url_ = '';
-            url_ = await decorateURL(props.dataNews.headline); 
+            url_ = await decorateURL(props.dataNews.title); 
             setURLState(url_); 
             console.log(url_);
         }
@@ -24,9 +27,9 @@ function Noticia(props){
     
     return(
         <div className="noticia-normal">
-            <Link to={`/home/${props.dataNews.mainTag}/${url}`}>
+            <Link to={`/home/${props.dataNews.tags[0].name}/${url}`}>
                 <div className="img-noticia-normal" >
-                     <p className = "titulo-noticia" >{props.dataNews.headline}</p>
+                <p className = "titulo-noticia" >{props.dataNews.title}</p>
                 </div>
             </Link> 
         </div>

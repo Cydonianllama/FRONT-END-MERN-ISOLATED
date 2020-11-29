@@ -64,8 +64,8 @@ const obtainData = async () =>{
                         'Content-Type': 'application/json'
                         // 'Content-Type': 'application/x-www-form-urlencoded',
                 }})
-        console.log(response.json());
-        return dataNoticia;
+        let processedResponse = await response.json()
+        return processedResponse
 }
 
 function Home(props) {
@@ -76,26 +76,26 @@ function Home(props) {
         useEffect(async ()=>{
                 
                 let processTitular = async() => {
-                        var headlinep;
+                        var headlinep
                         try{
-                                headlinep = await obtainHeadline();
+                                headlinep = await obtainHeadline()
                         }catch(err){
-                                console.log(err);
+                                console.log(err)
                         }
                         if (headlinep !== undefined || headlinep !== null) {
-                                setTitularState(headlinep); 
+                                setTitularState(headlinep) 
                         } 
                 }
 
                 let newsList = async () =>
-                 {
-                        var dataNews = [];
-                        var dataReturn = [];
-                        dataNews = await obtainData();
+                {
+                        var dataNews = []
+                        var dataReturn = []
+                        dataNews = await obtainData()
                         dataReturn = dataNews.map((item, index) => {
                                 return <Noticia key={index} dataNews={item} />
-                        });
-                        return dataReturn;
+                        })
+                        return dataReturn
                 }
 
                 let News = await newsList(); 
@@ -103,7 +103,6 @@ function Home(props) {
                 setArrayComponentsState(News);
                 processTitular();
                 
-
         },[props])
 
         return (

@@ -6,9 +6,26 @@ const Schema = mongoose.Schema
 
 const app = express()
 
+const corsOptions = {
+    origin: 'http://localhost:5000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
+
+app.use((req,res,next)=>{
+    console.log(req.url)
+    next()
+})
+
+/* // control allow origin , investigate for the future projects
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "http://localhost:5000")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+})
+*/
 
 const connectDB = async () => {
 
@@ -94,6 +111,14 @@ const newsSchema = new Schema({
 
 const modelNews = mongoose.model('newsone',newsSchema,'newsone')
 
+const metricsNewSchema = new Schema({
+    idnewsone : String,
+    countvisitors : Number,
+})
+
+const modelMetricsNew = mongoose.model('metricsnew', metricsNewSchema,'metricsnew')
+
+
 //functions and operations 
 
 const dislike = async () => {
@@ -105,7 +130,18 @@ const likeNew = async () => {
 }
 
 const chargeNew = async ({title}) => {
-
+    this.dataNewone = {}
+    try{
+        await modelNews.find({ title },(err , docs) =>{
+            this.dataNewone = docs 
+            console.log('hola' , docs)
+        })
+    }catch(err){
+        console.log(err)
+    }finally{
+        return this.dataNewone
+    }
+    
 }
 
 const chargeNews = async () => {
@@ -146,6 +182,14 @@ const logout = async(req,res) => {
 
 }
 
+//obtener una noticia : req.body -> title (lo obtendremos por su titulo)
+app.post('/getnew',async (req,res)=>{
+    console.log(req.body)
+    let data = await chargeNew(req.body)
+    console.log('post hola :' , data)
+    res.status(200).send(data)
+})
+
 app.post('/login',(req,res) => {
 
 })
@@ -179,6 +223,28 @@ app.post('user/Login',(req,res)=>{
 }
 */ 
 
+//query para documentos embebidos
+//db.newsone.find( { "tags": { $elemMatch: { name: 'nacionales' } } } )
+const obteinNewsForType = async ({typenotice}) =>{
+    let data = {}
+    let dataa = {}
+    let findData = typenotice
+    try{
+        data = await modelNews.find({ 'tags': { $elemMatch: { name: typenotice } } },(err ,docs) =>{ 
+            dataa = docs ;  
+        })
+    }catch(err){
+        console.log(err)
+        return null
+    }
+    return dataa
+}
+
+app.post('/home/:typenotice',async (req,res)=>{
+    let data = await obteinNewsForType(req.params)
+    res.status(200).send(data)
+})
+
 const pruebasCrearNoticia = async ({title, emisionDate, content, idAuthor, urlImage, tags}) => {
    try{
        await new modelNews({title, emisionDate, content, idAuthor, urlImage, tags}).save()
@@ -194,6 +260,7 @@ app.post('/add/notice', async (req,res) => {
     if(isCreated === true) res.status(200).send({noticeCreated : 'true'})
     else res.status(200).send({noticeCreated : 'false'})
 })
+
 
 app.listen(3500,()=>{
     console.log('done')

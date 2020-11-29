@@ -23,16 +23,19 @@ const  App = () => {
                         <SectionsNews type="internacionales" />
                     </Route>
                     <Route exact path='/home/deportes'>
-                        <SectionsNews type="internacionales" />
+                        <SectionsNews type="deportes" />
                     </Route>
                     <Route exact path='/home/politica'>
-                        <SectionsNews type="internacionales" />
+                        <SectionsNews type="politica" />
                     </Route>
                     <Route exact path='/home/espectaculos'>
-                        <SectionsNews type="internacionales" />
+                        <SectionsNews type="espectaculos" />
                     </Route>
                     <Route exact path='/home/variados'>
-                        <SectionsNews type="internacionales" />
+                        <SectionsNews type="variados" />
+                    </Route>
+                    <Route exact path='/home/variedades/:title'>
+                        <NoticiaPage />
                     </Route>
                     <Route exact path='/home/nacionales/:title' >
                         <NoticiaPage />

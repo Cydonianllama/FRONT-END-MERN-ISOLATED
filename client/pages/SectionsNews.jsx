@@ -4,91 +4,91 @@ import Noticia from '../components/Noticia.jsx';
 
 var dataNoticia = [
     {
-        headline: 'andate a la mierda',
+        title: 'andate a la mierda',
         text: 'en esta oportunidad voy a decirte algo importante, puto el que lee',
         tags: ['general', 'nacionales'],
         mainTag: 'nacionales',
         views: 600
     },
     {
-        headline: 'michael jackson revive y postulará a la presidencia de bolivia',
+        title: 'michael jackson revive y postulará a la presidencia de bolivia',
         text: 'noticia de ultimo minuto vizcarra c murio ',
         tags: ['general', 'nacionales'],
         mainTag: 'internacionales',
         views: 88
     },
     {
-        headline: 'vizacarra legaliza el matrimonio gey para casarse con antauro humala',
+        title: 'vizacarra legaliza el matrimonio gey para casarse con antauro humala',
         text: 'noticia de ultimo minuto vizcarra c murio ',
         tags: ['general', 'nacionales'],
         mainTag: 'nacionales',
         views: 450
     },
     {
-        headline: 'keiko fujimori se convierte en la primera persidente mujer de Chololandia',
+        title: 'keiko fujimori se convierte en la primera persidente mujer de Chololandia',
         text: 'noticia de ultimo minuto vizcarra c murio ',
         tags: ['general', 'nacionales'],
         mainTag: 'nacionales',
         views: 600
     },
     {
-        headline: 'jefferson farfan entro al congreso por podemos peru',
+        title: 'jefferson farfan entro al congreso por podemos peru',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'nacionales'],
         mainTag: 'nacionales',
         views: 8900
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
         views: 4500
     },
     {
-        headline: 'katy perry se caso con ariana grande',
+        title: 'katy perry se caso con ariana grande',
         text: 'entre sus planes tiene el eliminar las matematicas de la curricula inicial',
         tags: ['general', 'internacionales'],
         mainTag: 'internacionales',
@@ -98,6 +98,20 @@ var dataNoticia = [
 
 const fetchdata = async (type) =>{
     return dataNoticia;
+}
+
+const pruebas = async (type) =>{
+    let uri_complete = `http://localhost:3500/home/${type}`
+    let response = await fetch(uri_complete, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    console.log(response.json())
 }
 
 const handleObtainNews = async (typen) => {
@@ -116,14 +130,8 @@ function SectionNews(props) {
     const [arrayComponents, setArrayComponentsState] = useState([]);
 
     useEffect(async () => {
-
-        let newsList = async () => {
-            var dataNews = [];
-            dataNews = await handleObtainNews(props.type);
-            return dataNews;
-        }
-
-        let News = await newsList();
+        await pruebas(props.type)
+        let News = await handleObtainNews(props.type);
         console.log(News);
         setArrayComponentsState(News);
         
