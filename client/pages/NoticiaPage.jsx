@@ -20,32 +20,46 @@ function RemoveDecorateURl(url){
 }
 
 const fetchNewsoneData = async (titleURL) => {
-    let url = await RemoveDecorateURl(titleURL)
+
+    let dataBody = RemoveDecorateURl(titleURL)
+    let jsonRequest = {
+        title: dataBody 
+    }
     let urlComplete = `http://localhost:3500/getnew`
-    let data = await fetch(urlComplete, {
+    let response = await fetch(urlComplete, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'no-cors', // no-cors, *cors, same-origin
+        mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         //credentials: 'same-origin', // include, *same-origin, omit
+        body: JSON.stringify(jsonRequest),
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify({ title: url })
+            //'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        
     })
-    //JSON.stringify(url)
-    console.log(data)
+
+    let responseJSON = await response.json()
+    console.log(responseJSON)
+
+    return responseJSON
+
 }
 
 function NoticiaPage(props){
 
-    const [url,setURLState] = useState('');
+    const [data,setDataState] = useState([{content : ''}])
     let  {title} = useParams();
 
     useEffect( async ()=>{
-        await fetchNewsoneData(title)
+        await fetchNewsoneData(title).then((res) => {
+            console.log('dataNoticia :' , res )
+            if (res[0] === undefined) setDataState([{ content: '' }])
+            else setDataState(res)  
+        })
+
     },[props]);
-    
+
     return(
         <>
             <Layout>
@@ -66,8 +80,8 @@ function NoticiaPage(props){
                                 </div>
                             </div>
                             <div className = "container-new-content-II">
-                                <p class = "comment-section">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum et, ducimus ea cumque, sed officiis magni deleniti error explicabo culpa cum nulla. Veniam impedit, dicta sed in a voluptates fuga.</p>
-                                <p class = "comment-section">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum et, ducimus ea cumque, sed officiis magni deleniti error explicabo culpa cum nulla. Veniam impedit, dicta sed in a voluptates fuga.</p>
+                                <p class = "comment-section">{data[0].content}</p>
+                                
                             </div>
                             <div className = "container-new-content-III">
                                 <div className = "input-comment-container-new-content-III">

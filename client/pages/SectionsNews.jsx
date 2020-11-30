@@ -111,7 +111,7 @@ const pruebas = async (type) =>{
             'Content-Type': 'application/json'
         }
     })
-    console.log(response.json())
+    console.log(response)
 }
 
 const handleObtainNews = async (typen) => {

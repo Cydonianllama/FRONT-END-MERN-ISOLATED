@@ -25,11 +25,20 @@ const  App = () => {
                     <Route exact path='/home/deportes'>
                         <SectionsNews type="deportes" />
                     </Route>
+                    <Route exact path='/home/deportes/:title'>
+                        <NoticiaPage/>
+                    </Route>
                     <Route exact path='/home/politica'>
                         <SectionsNews type="politica" />
                     </Route>
+                    <Route exact path='/home/politica/:title'>
+                        <NoticiaPage/>
+                    </Route>
                     <Route exact path='/home/espectaculos'>
                         <SectionsNews type="espectaculos" />
+                    </Route>
+                    <Route exact path='/home/espectaculos/:title'>
+                        <NoticiaPage/>
                     </Route>
                     <Route exact path='/home/variados'>
                         <SectionsNews type="variados" />
