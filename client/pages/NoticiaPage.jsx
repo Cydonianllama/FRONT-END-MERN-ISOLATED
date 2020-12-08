@@ -40,7 +40,6 @@ const fetchNewsoneData = async (titleURL) => {
     })
 
     let responseJSON = await response.json()
-    console.log(responseJSON)
 
     return responseJSON
 
@@ -53,7 +52,6 @@ function NoticiaPage(props){
 
     useEffect( async ()=>{
         await fetchNewsoneData(title).then((res) => {
-            console.log('dataNoticia :' , res )
             if (res[0] === undefined) setDataState([{ content: '' }])
             else setDataState(res)  
         })

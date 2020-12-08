@@ -3,46 +3,6 @@ import Layout from '../layout/layout.jsx'
 import Noticia from '../components/Noticia.jsx'
 import Titular from '../components/Titular.jsx'
 
-var dataNoticia = [
-        {
-                headline: 'andate a la mierda',
-                tags: ['general', 'nacionales'],
-                mainTag: 'nacionales',
-                views: 600
-        },
-        {
-                headline: 'michael jackson revive y postulará a la presidencia de bolivia',
-                tags: ['general', 'nacionales'],
-                mainTag: 'internacionales',
-                views: 88
-        },
-        {
-                headline: 'vizacarra legaliza el matrimonio gey para casarse con antauro humala',
-                tags: ['general', 'nacionales'],
-                mainTag: 'nacionales',
-                views: 450
-        },
-        {
-                headline: 'keiko fujimori se convierte en la primera persidente mujer de Chololandia',
-                tags: ['general', 'nacionales'],
-                mainTag: 'nacionales',
-                views: 600
-        },
-        {
-                headline: 'jefferson farfan entro al congreso por podemos peru',
-                tags: ['general', 'nacionales'],
-                mainTag: 'nacionales',
-                views: 8900
-        },
-        {
-                headline: 'katy perry se caso con ariana grande',
-                tags: ['general', 'internacionales'],
-                mainTag: 'internacionales',
-                views: 4500
-        }
-];
-
-
 let headlineP =
 {
         headline: 'me tire un pedo jugoso',
