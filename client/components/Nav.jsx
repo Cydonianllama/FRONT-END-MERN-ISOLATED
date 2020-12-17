@@ -11,7 +11,6 @@ function showlogin(){
         </div>
     )
 }
-
 function showProfileUser(){
     return (
         <div className="border-container-user-nav">
@@ -26,57 +25,51 @@ function showProfileUser(){
         </div>
     )
 }
-
 function verifyStateUser(){
     //process to verify
     return true;
 }
-
 function showComponentUserNav() {
     let isLogged = verifyStateUser() ;
     if (isLogged == true) return showProfileUser();
     else return showlogin()
 }
+function Nav()  {
+    
+    let componentToShow1 = showComponentUserNav();
 
-class Nav extends React.Component {
-
-    render(){
-
-        let componentToShow1 = showComponentUserNav();
-
-        return(
-            <div>   
-                <nav className="nav-main">
-                    <div className="hamburger">
-                        <MenuIcon/>
+    return (
+        <div>
+            <nav className="nav-main">
+                <div className="hamburger">
+                    <MenuIcon />
+                </div>
+                <div className="logo-nav-main">
+                    logo
                     </div>
-                    <div className="logo-nav-main">
-                        logo
-                    </div>
-                    <div className="search-nav">
-                        <input type="text" placeholder="buscar" name="buscar-nav"/>
-                        <SearchSharpIcon fontSize='inherit' htmlColor="white" className= "icon-search-nav"/>
-                    </div>
-                    <div className="switchtheme">
-                        <ToggleOffIcon fontSize='large'/>
-                    </div>
-                    <div className="user-nav">
-                        {componentToShow1}     
-                    </div>
-                    <div className="links-nav">
-                        <Link class="link" to='/home'>Home</Link>
-                        <Link class="link" to='/home/nacionales'>Nacionales</Link>
-                        <Link class="link" to='/home/internacionales'>Internacionales</Link>
-                        <Link class="link" to='/home/politica'>Politica</Link>
-                        <Link class="link" to='/home/espectaculos'>Espectaculos</Link>
-                        <Link class="link" to='/home/variados'>Variados</Link>
-                        <Link class="link" to='/home/deportes'>Deportes</Link>
-                    </div>
-                    
-                </nav>
-            </div>
-        )
-    }
+                <div className="search-nav">
+                    <input type="text" placeholder="buscar" name="buscar-nav" />
+                    <SearchSharpIcon fontSize='inherit' htmlColor="white" className="icon-search-nav" />
+                </div>
+                <div className="switchtheme">
+                    <ToggleOffIcon fontSize='large' />
+                </div>
+                <div className="user-nav">
+                    {componentToShow1}
+                </div>
+                <div className="links-nav">
+                    <Link class="link" to='/home'>Home</Link>
+                    <Link class="link" to='/home/nacionales'>Nacionales</Link>
+                    <Link class="link" to='/home/internacionales'>Internacionales</Link>
+                    <Link class="link" to='/home/politica'>Politica</Link>
+                    <Link class="link" to='/home/espectaculos'>Espectaculos</Link>
+                    <Link class="link" to='/home/variados'>Variados</Link>
+                    <Link class="link" to='/home/deportes'>Deportes</Link>
+                </div>
+            </nav>
+        </div>
+    )   
+    
 }
 
 export default Nav;

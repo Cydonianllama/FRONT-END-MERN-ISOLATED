@@ -3,47 +3,9 @@ import React,{useState,useEffect} from 'react'
 // const history = useHistory();
 // history.push('url');
 import {useParams} from 'react-router-dom'
-import Layout from '../layout/layout.jsx';
-
-const interactionNew = async (type) =>{
-
-}
-
-const addComment = async () => {
-
-}
-
-function RemoveDecorateURl(url){
-    let withoutDecoration = url.replace(/[-]/g, " ")
-    console.log(withoutDecoration);
-    return withoutDecoration
-}
-
-const fetchNewsoneData = async (titleURL) => {
-
-    let dataBody = RemoveDecorateURl(titleURL)
-    let jsonRequest = {
-        title: dataBody 
-    }
-    let urlComplete = `http://localhost:3500/getnew`
-    let response = await fetch(urlComplete, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        //credentials: 'same-origin', // include, *same-origin, omit
-        body: JSON.stringify(jsonRequest),
-        headers: {
-            'Content-Type': 'application/json'
-            //'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        
-    })
-
-    let responseJSON = await response.json()
-
-    return responseJSON
-
-}
+import Layout from '../layout/layout';
+import { addComment,interactionNew,RemoveDecorateURl,fetchNewsoneData} 
+from '../Actions/ActionsNoticiaPage'
 
 function NoticiaPage(props){
 
@@ -55,9 +17,7 @@ function NoticiaPage(props){
             if (res[0] === undefined) setDataState([{ content: '' }])
             else setDataState(res)  
         })
-
     },[props]);
-
     return(
         <>
             <Layout>

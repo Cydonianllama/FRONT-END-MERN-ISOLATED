@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter,Link,Route, Switch, Redirect} from 'react-router-dom';
-import Home from './pages/Home.jsx';
-import SectionsNews from './pages/SectionsNews.jsx';
-import Notfound from './pages/Notfound.jsx';
-import NoticiaPage from './pages/NoticiaPage.jsx'
+import Home from './pages/Home';
+import SectionsNews from './pages/SectionsNews';
+import Notfound from './pages/Notfound';
+import NoticiaPage from './pages/NoticiaPage'
 
 const  App = () => {
     //router children
@@ -40,8 +40,8 @@ const  App = () => {
                     <Route exact path='/home/espectaculos/:title'>
                         <NoticiaPage/>
                     </Route>
-                    <Route exact path='/home/variados'>
-                        <SectionsNews type="variados" />
+                    <Route exact path='/home/variedades'>
+                        <SectionsNews type="variedades" />
                     </Route>
                     <Route exact path='/home/variedades/:title'>
                         <NoticiaPage />
