@@ -2,10 +2,15 @@ import React,{useState,useEffect} from 'react'
 //import { useHistory } from "react-router-dom";
 // const history = useHistory();
 // history.push('url');
-import {useParams} from 'react-router-dom'
+import {useParams,} from 'react-router-dom'
 import Layout from '../layout/layout';
-import { addComment,interactionNew,RemoveDecorateURl,fetchNewsoneData} 
-from '../Actions/ActionsNoticiaPage'
+import {getCompleteInformationNew} 
+from '../Actions/ActionsNews'
+
+function RemoveDecorateURl(url) {
+    let withoutDecoration = url.replace(/[-]/g, " ")
+    return withoutDecoration
+}
 
 function NoticiaPage(props){
 
@@ -13,7 +18,7 @@ function NoticiaPage(props){
     let  {title} = useParams();
 
     useEffect( async ()=>{
-        await fetchNewsoneData(title).then((res) => {
+        await getCompleteInformationNew(title).then((res) => {
             if (res[0] === undefined) setDataState([{ content: '' }])
             else setDataState(res)  
         })

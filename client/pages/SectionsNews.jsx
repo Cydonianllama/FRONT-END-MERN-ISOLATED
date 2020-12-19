@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../layout/layout';
-import {fetchData,handleObtainNews} from '../Actions/ActionsSectionNews';
+import {getNewsByType} from '../Actions/ActionsNews';
+
+const handleObtainNews = async (typen) => {
+    let returndata = [];
+    let data = await getNewsByType(typen);
+    data.map((item, index) => {
+        console.log(item.tags[0].name)
+        if (item.tags[0].name === typen) {
+            returndata.push(<Noticia key={index} dataNews={item} />);
+        }
+    });
+    return returndata;
+}
 
 function SectionNews(props) {
 

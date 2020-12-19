@@ -13,13 +13,10 @@ function Noticia(props){
 
     useEffect(()=>{
 
-        console.log('hola soy noticia : ' , props.dataNews)
-
         const transformToURL = async() =>{
             let url_ = '';
             url_ = await decorateURL(props.dataNews.title); 
             setURLState(url_); 
-            console.log(url_);
         }
         transformToURL();
     

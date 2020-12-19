@@ -6,7 +6,6 @@ import Notfound from './pages/Notfound';
 import NoticiaPage from './pages/NoticiaPage'
 
 const  App = () => {
-    //router children
     return (
         <>
             <BrowserRouter> 
