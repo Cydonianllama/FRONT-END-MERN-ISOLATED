@@ -12,6 +12,11 @@ import {
     userUpdateReducer,
 } from '../reducers/userReducers';
 
+import {
+    getHeadlineReducer,
+    getAllNewsReducer,
+} from '../reducers/newsReducer'
+
 const initialState = {
     userSignin: {
         userInfo: localStorage.getItem('userInfo')
@@ -29,6 +34,8 @@ const reducer = combineReducers({
     userList: userListReducer,
     userDelete: userDeleteReducer,
     userAddressMap: userAddressMapReducer,
+    chargeHeadline : getHeadlineReducer,
+    chargeAllNews : getAllNewsReducer
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

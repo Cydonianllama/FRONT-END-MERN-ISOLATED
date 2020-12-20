@@ -118,7 +118,6 @@ const metricsNewSchema = new Schema({
 
 const modelMetricsNew = mongoose.model('metricsnew', metricsNewSchema,'metricsnew')
 
-
 //functions and operations 
 
 const dislike = async () => {
@@ -212,16 +211,7 @@ app.post('user/Login',(req,res)=>{
 
 })
 
-/*
-{
-	"title" : "erick esta apendiendo a usar mongo",
-	"emisisonDate" : "2020-11-27T16:00:00Z",
-	"content" : "esta noticia no es mas que una nota recordando que esta funcionando mi request",
-	"idAuthor" : "1",
-	"urlImage" : "/images/noticia1.jpg",
-	"tags" : [ {"name" : "variedades"} , {"name" : "nacionales"} ]
-}
-*/ 
+
 
 //query para documentos embebidos
 //db.newsone.find( { "tags": { $elemMatch: { name: 'nacionales' } } } )

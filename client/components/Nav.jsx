@@ -63,7 +63,7 @@ function Nav()  {
                     <Link class="link" to='/home/internacionales'>Internacionales</Link>
                     <Link class="link" to='/home/politica'>Politica</Link>
                     <Link class="link" to='/home/espectaculos'>Espectaculos</Link>
-                    <Link class="link" to='/home/variados'>Variados</Link>
+                    <Link class="link" to='/home/variedades'>Variedades</Link>
                     <Link class="link" to='/home/deportes'>Deportes</Link>
                 </div>
             </nav>

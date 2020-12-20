@@ -2,42 +2,40 @@ import React,{useState,useEffect} from 'react'
 import Layout from '../layout/layout'
 import Noticia from '../components/Noticia'
 import Titular from '../components/Titular'
-import {getAllNews,getHeadline} from '../Actions/ActionsNews'
+import {getHeadline,getAllNews} from '../Actions/ActionsNews'
+import {useDispatch, useSelector} from 'react-redux'
+
+// async function insertStateTitular(callback){
+//         var headlinep
+//         try {headlinep = await getHeadline()} 
+//         catch (err) {console.log(err)}
+//         if (headlinep !== undefined || headlinep !== null) callback(headlinep)
+// }
+
+async function pushComponentNoticia(data,setData){
+        var dataReturn = []
+        dataReturn = data.map((item, index) => {
+                return <Noticia key={index} dataNews={item} />
+        })
+        setData(dataReturn)
+}
 
 function Home(props) {
-
-        const [arrayComponents ,setArrayComponentsState] = useState([]);
-        const [titular,setTitularState] = useState({});
-        
+        const [arrayComponents ,setArrayComponentsState] = useState([])
+        const [titular,setTitularState] = useState({})
+        const dataHeadline = useSelector((state) => state.chargeHeadline)
+        const { loading, data, error } = dataHeadline
+        const dispatch = useDispatch();
         useEffect(async ()=>{
-                let processTitular = async() => {
-                        var headlinep
-                        try{
-                                headlinep = await getHeadline()
-                        }catch(err){
-                                console.log(err)
-                        }
-                        if (headlinep !== undefined || headlinep !== null) {
-                                setTitularState(headlinep) 
-                        } 
-                }
-                let newsList = async () =>
-                {
-                        var dataNews = []
-                        var dataReturn = []
-                        dataNews = await getAllNews()
-                        dataReturn = dataNews.map((item, index) => {
-                                return <Noticia key={index} dataNews={item} />
-                        })
-                        return dataReturn
-                }
-
-                let News = await newsList(); 
-                console.log(News);
-                setArrayComponentsState(News);
-                processTitular();
+                // setTitularState(headline)
+                // let dataNews = await getAllNews()
+                // pushComponentNoticia(dataNews,setArrayComponentsState)
+                dispatch(getHeadline())
+                console.log(error)
+                console.log(loading)
+                console.log(data)
+                
         },[props])
-
         return (
                 <div>
                         <Layout>        
@@ -48,8 +46,7 @@ function Home(props) {
                                         {arrayComponents}
                                 </div>
                                 <div className="container-deportes">
-                                        <h2>DEPORTES</h2>
-                                        
+                                        <h2>DEPORTES</h2>       
                                 </div>
                                 <div className="container-espectaculos">
                                         <h2>ESPECTACULOS</h2>

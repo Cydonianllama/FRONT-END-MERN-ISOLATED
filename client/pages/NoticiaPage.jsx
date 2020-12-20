@@ -1,7 +1,4 @@
 import React,{useState,useEffect} from 'react'
-//import { useHistory } from "react-router-dom";
-// const history = useHistory();
-// history.push('url');
 import {useParams,} from 'react-router-dom'
 import Layout from '../layout/layout';
 import {getCompleteInformationNew} 
@@ -13,10 +10,8 @@ function RemoveDecorateURl(url) {
 }
 
 function NoticiaPage(props){
-
     const [data,setDataState] = useState([{content : ''}])
     let  {title} = useParams();
-
     useEffect( async ()=>{
         await getCompleteInformationNew(title).then((res) => {
             if (res[0] === undefined) setDataState([{ content: '' }])
@@ -67,5 +62,7 @@ function NoticiaPage(props){
         </>
     )    
 }
-
+//import { useHistory } from "react-router-dom";
+// const history = useHistory();
+// history.push('url');
 export default NoticiaPage;

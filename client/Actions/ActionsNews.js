@@ -1,17 +1,41 @@
-let headlineP =
-{
-    headline: 'me tire un pedo jugoso',
-    text: 'manche al pobre del costado, no se por que había alguien a mi costado'
-}
+import {
+    GET_HEADLINE_REQUEST,
+    GET_HEADLINE_SUCESS,
+    GET_HEADLIME_FAIL    
+} from '../utils/constNews'
 
-export const getHeadline = async () => {
-    return headlineP;
+export const getHeadline = () => async (dispatch) => {
+    console.log('estoy queriendo despachar')
+    dispatch({type : GET_HEADLINE_REQUEST})
+    const url = 'http://localhost:3500/new/getHeadline?date=nomeimportaporahora'
+    const parametersHTTP = {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+    }
+    let response
+    let data 
+    try { 
+        response = await fetch(url, parametersHTTP)
+        data = await response.json()
+        console.log(data)
+        dispatch({type : GET_HEADLINE_SUCESS , data : data})
+    }
+    catch(err){
+        console.error(err)
+        dispatch({type : GET_HEADLIME_FAIL , error : err})
+    }
 }
 
 export const getAllNews = async () => {
-    const url = 'http://localhost:3500/'
+    const url = 'http://localhost:3500/new/getAll'
     const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
@@ -20,8 +44,9 @@ export const getAllNews = async () => {
             // 'Content-Type': 'application/x-www-form-urlencoded',
         }
     })
-    let processedResponse = await response.json()
-    return processedResponse
+    let data = await response.json()
+    console.log(data)
+    return data
 }
 
 export const getNewsByType = async (paramURLtypeNew) => {
@@ -62,4 +87,28 @@ export const getCompleteInformationNew = async (titleURL) => {
     })
     let responseJSON = await response.json()
     return responseJSON
+}
+
+export function getMetricsNew(){
+
+}
+
+export function likeNew(){
+
+}
+
+export function dislikeNew(){
+
+}
+
+export function commentNew(){
+
+}
+
+export function deleteCommentNew(){
+
+}
+
+export function updateCommentNew(){
+    
 }

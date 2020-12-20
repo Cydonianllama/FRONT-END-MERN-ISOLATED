@@ -1,9 +1,3 @@
-function mierdas(){
-    return(<div>
-        mierda
-    </div>) 
-}
-
 function LoginAndRegister(){
     return(
             <div class="conatiner-login-register">

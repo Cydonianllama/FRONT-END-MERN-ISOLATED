@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../layout/layout';
 import {getNewsByType} from '../Actions/ActionsNews';
 
-const handleObtainNews = async (typen) => {
+const handleGetNews = async (typen) => {
     let returndata = [];
     let data = await getNewsByType(typen);
     data.map((item, index) => {
@@ -15,15 +15,11 @@ const handleObtainNews = async (typen) => {
 }
 
 function SectionNews(props) {
-
     const [arrayComponents, setArrayComponentsState] = useState([]);
-
     useEffect(async () => {
-        let News = await handleObtainNews(props.type);
-        setArrayComponentsState(News);
-
+        //let News = await handleGetNews(props.type);
+       //setArrayComponentsState(News);
     }, [props])
-
     return (
         <div>
             <Layout>

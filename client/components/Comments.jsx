@@ -1,15 +1,12 @@
 import {useState,useEffect} from 'react'
 
 function Comments({dataComments}){
-
     const handlePublish = ()=>{
         console.log('estoy publicando');
     }
-
     useEffect(()=>{
-
+        
     },[dataComments])
-
     return(
         <>
             <div className="Comments-container">
