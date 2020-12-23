@@ -23,36 +23,24 @@ async function pushComponentNoticia(data,setData){
 function Home(props) {
         const [arrayComponents ,setArrayComponentsState] = useState([])
         const [titular,setTitularState] = useState({})
+        const [prueba,setStatePrueba] = useState({})
+        const dispatch = useDispatch();
         const dataHeadline = useSelector((state) => state.chargeHeadline)
         const { loading, data, error } = dataHeadline
-        const dispatch = useDispatch();
         useEffect(async ()=>{
                 // setTitularState(headline)
                 // let dataNews = await getAllNews()
                 // pushComponentNoticia(dataNews,setArrayComponentsState)
-                dispatch(getHeadline())
-                console.log(error)
-                console.log(loading)
-                console.log(data)
-                
+                dispatch(getHeadline())  
         },[props])
         return (
                 <div>
-                        <Layout>        
+                        <Layout>
                                 <div className="headline">
-                                        <Titular dataTitular={titular}/>
+                                        <Titular dataTitular={titular} />
                                 </div>
                                 <div className="container-noticias">
                                         {arrayComponents}
-                                </div>
-                                <div className="container-deportes">
-                                        <h2>DEPORTES</h2>       
-                                </div>
-                                <div className="container-espectaculos">
-                                        <h2>ESPECTACULOS</h2>
-                                </div>
-                                <div className= "container-variados">
-                                        <h2>VARIADOS</h2>
                                 </div>
                         </Layout>
                 </div>

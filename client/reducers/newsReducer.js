@@ -46,6 +46,7 @@ export const getHeadlineReducer = (state = {},action) =>{
         case GET_HEADLINE_REQUEST :
             return {loading : true}
         case GET_HEADLINE_SUCESS :
+            console.log('si funciiono',action.data)
             return {loading : false , data : action.data}
         case GET_HEADLIME_FAIL:
             return {loading : false , error : action.data}
