@@ -3,6 +3,7 @@ const htmlPlugin = require('html-webpack-plugin');
 const pluginhtml = new htmlPlugin();
 
 module.exports = {
+    mode: 'development',
     entry  : './client/index.jsx',
     output :{
         path : path.resolve(__dirname,'dist'),
