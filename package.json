@@ -6,6 +6,7 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "test": "",
+    "start" : "",
     "start:dev": "npx webpack serve",
     "build": "npx webpack"
   },

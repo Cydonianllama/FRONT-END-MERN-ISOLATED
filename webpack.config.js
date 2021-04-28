@@ -4,7 +4,7 @@ const pluginhtml = new htmlPlugin();
 
 module.exports = {
     mode: 'development',
-    entry  : './client/index.jsx',
+    entry  : './client/index.js',
     output :{
         path : path.resolve(__dirname,'dist'),
         filename : 'bundle.js'
